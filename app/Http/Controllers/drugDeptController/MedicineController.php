@@ -87,6 +87,8 @@ class MedicineController extends Controller
                 'generic_id' => $request->generic_id,
                 'price' => $request->price,
                 'batch_no' => $request->batch_no,
+                'quantity' => 0,
+                'total_quantity' => 0,
                 'strength' => $request->strength,
                 'route' => $request->route,
                 'notes' => $request->notes,
@@ -134,7 +136,6 @@ class MedicineController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable',
             'generic_id' => 'required|integer',
-            'quantity' => 'nullable|integer',
             'price' => 'nullable|integer',
             'batch_no' => 'nullable|string|max:255',
             'dosage' => 'nullable|string|max:255',
@@ -166,7 +167,6 @@ class MedicineController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'generic_id' => $request->generic_id,
-                'quantity' => $request->quantity,
                 'price' => $request->price,
                 'batch_no' => $request->batch_no,
                 'dosage' => $request->dosage,
@@ -198,6 +198,7 @@ class MedicineController extends Controller
             File::delete(public_path($medicine->image));
         }
         $medicine->delete();
+        $medicine->logs()->delete();
         return redirect('/medicines')->with('info', 'Medicine deleted successfully.');
     }
 
