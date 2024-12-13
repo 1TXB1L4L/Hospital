@@ -53,16 +53,6 @@
                 </div>
             </div>
 
-            <!-- Quantity Input -->
-            <div>
-                <label for="quantity" class="label">Quantity</label>
-                <div class="mt-2">
-                    <input id="quantity" name="quantity" type="number" class="input" value="{{ old('quantity') }}">
-                    @error('quantity')
-                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
 
             <!-- Strength Input -->
             <div>
